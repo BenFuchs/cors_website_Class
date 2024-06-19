@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Management</title>
+</head>
+<body>
+    <h1>Garage Management</h1>
+
+    <!-- Form to add a new car -->
+    <h2>Add a New Car</h2>
+    <form id="addCarForm">
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" required><br><br>
+        
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required><br><br>
+        
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" name="brand" required><br><br>
+        
+        <button type="submit">Add Car</button>
+    </form>
+
+    <hr>
+
+    <!-- Display all cars -->
+    <h2>All Cars</h2>
+    <div id="carList"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Function to fetch and display all cars
+        function showCars() {
+            axios.get('http://localhost:5000/showCars')
+                .then(function (response) {
+                    let cars = response.data;
+                    let carListDiv = document.getElementById('carList');
+                    carListDiv.innerHTML = ''; // Clear previous list
+
+                    cars.forEach(function(car) {
+                        let carDiv = document.createElement('div');
+                        carDiv.innerHTML = `
+                            <p><strong>Color:</strong> ${car.Color}</p>
+                            <p><strong>Model:</strong> ${car.Model}</p>
+                            <p><strong>Brand:</strong> ${car.Brand}</p>
+                            <button onclick="deleteCar(${car.rowid})">Delete</button>
+                            <button onclick="updateCar(${car.rowid})">Update</button>
+                            <hr>
+                        `;
+                        carListDiv.appendChild(carDiv);
+                    });
+                })
+                .catch(function (error) {
+                    console.error('Error fetching cars:', error);
+                });
+        }
+
+        // Function to add a new car
+        document.getElementById('addCarForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let color = document.getElementById('color').value;
+            let model = document.getElementById('model').value;
+            let brand = document.getElementById('brand').value;
+
+            axios.post('http://localhost:5000/', {
+                Color: color,
+                Model: model,
+                Brand: brand
+            })
+            .then(function (response) {
+                console.log('Car added successfully:', response.data);
+                showCars(); // Refresh car list after adding
+                document.getElementById('addCarForm').reset(); // Clear form fields
+            })
+            .catch(function (error) {
+                console.error('Error adding car:', error);
+            });
+        });
+
+        // Function to delete a car by its ID
+        function deleteCar(carId) {
+            axios.delete(`http://localhost:5000/delCar/${carId}`)
+                .then(function (response) {
+                    console.log('Car deleted successfully:', response.data);
+                    showCars(); // Refresh car list after deletion
+                })
+                .catch(function (error) {
+                    console.error('Error deleting car:', error);
+                });
+        }
+
+        // Function to update a car by its ID
+        function updateCar(carId) {
+            let nColor = prompt('Enter new color:');
+            let nModel = prompt('Enter new model:');
+            let nBrand = prompt('Enter new brand:');
+
+            axios.put(`http://localhost:5000/updCar/${carId}`, {
+                Color: nColor,
+                Model: nModel,
+                Brand: nBrand
+            })
+            .then(function (response) {
+                console.log('Car updated successfully:', response.data);
+                showCars(); // Refresh car list after update
+            })
+            .catch(function (error) {
+                console.error('Error updating car:', error);
+            });
+        }
+
+        // Initial load of cars when the page loads
+        showCars();
+    </script>
+</body>
+</html>

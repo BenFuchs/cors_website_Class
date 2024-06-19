@@ -1,0 +1,79 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "ClassWord",
+    "collectionId": "b3371a0e-7bc5-4c60-bbc4-d828e2648447",
+    "dateExported": "2024-06-19T10:09:21.660Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "8e7043d3-0149-4cae-a55a-1e02ae152f89",
+            "colId": "b3371a0e-7bc5-4c60-bbc4-d828e2648447",
+            "containerId": "",
+            "name": "add car POST",
+            "url": "http://127.0.0.1:5000/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-06-19T10:03:31.086Z",
+            "modified": "2024-06-19T10:03:31.086Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"Color\": \"red\", \"Model\": \"1999\", \"Brand\": \"bmw\"}",
+                "form": []
+            }
+        },
+        {
+            "_id": "ab471257-c163-4787-97c9-d1ea4e5958ce",
+            "colId": "b3371a0e-7bc5-4c60-bbc4-d828e2648447",
+            "containerId": "",
+            "name": "Show cars GET",
+            "url": "http://127.0.0.1:5000/showCars",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-06-19T10:04:03.494Z",
+            "modified": "2024-06-19T10:04:03.494Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"Color\": \"red\", \"Model\": \"1999\", \"Brand\": \"bmw\"}",
+                "form": []
+            }
+        },
+        {
+            "_id": "6c176221-e728-4bb3-ad36-6d9f4f80ed13",
+            "colId": "b3371a0e-7bc5-4c60-bbc4-d828e2648447",
+            "containerId": "",
+            "name": "remove car DEL",
+            "url": "http://127.0.0.1:5000/delCar/2",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-06-19T10:04:55.254Z",
+            "modified": "2024-06-19T10:04:55.254Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"Color\": \"red\", \"Model\": \"1999\", \"Brand\": \"bmw\"}",
+                "form": []
+            }
+        },
+        {
+            "_id": "40252ecd-a938-4e0b-bcf8-a407a109ef74",
+            "colId": "b3371a0e-7bc5-4c60-bbc4-d828e2648447",
+            "containerId": "",
+            "name": "update car PUT",
+            "url": "http://127.0.0.1:5000/updCar/3",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-06-19T10:05:52.253Z",
+            "modified": "2024-06-19T10:05:52.253Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"Color\": \"green\", \"Model\": \"9999\", \"Brand\": \"kia\"}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "T_tFThFmT2IZP2babAaxxrcTAkCr1zuWDBbksRy_RuuqNWyFHZLwGaZn1MjmTMio6mOYF8fCZA4OkMSUNiHxIA"
+}
